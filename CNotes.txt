@@ -8,6 +8,8 @@ preprocessing = the compiler removes all the comments from the code and includes
 compilation = then the preprocessed code is run with fix memory allocated
 assembly = then the code gets converted into assembly lang
 linking = all files are linked together to generate an executable(.exe) file
+
+#include "code.c" // this is how to include other file's code into another code, like npm in JS
 ----------------------------------
 int a; // this means initializing a variable
 int a = 5; // this means declaring a variable
@@ -26,6 +28,17 @@ fOrMaT sPeCiFiErS
 dEfInInG cOnStAnTs
 const [var type] [var name] = [var value];
 #define PI 3.14 // no need to insert semicolon here
+----------------------------------
+STORAGE CLASSES IN C
+1. Automatic Variables // the most common, the variable decides itself if it is local or global
+2. External Variables // the global variables, which should be avoided, as any function can change it and will not free-up the memory allocated to it until the whole program is over
+3. Static Variables // the variables which are constant, which holds the previous value they had been assigned
+4. Register Variables // the cpu decides if a register is available to store and process data in the processor memory. It is generally used to store the variables which are frequently used in the program
+
+
+To use the variable outside your function, and from global scope, you need to insert 'extern' before declaring the variable, but not defining it.
+i.e. int func(){ extern int sum; }
+	int sum = 343; // in order to use this variable, we must use extern inside the func()
 ----------------------------------
 
 Strings in C
