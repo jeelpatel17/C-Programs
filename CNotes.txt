@@ -1,0 +1,685 @@
+Compiler Gyaan
+gcc code.c -o [name that you want to give] // to give the compiled file a name other than a.exe
+
+gcc -Wall -save-temps zero.c // To see all the files which gets generated during the compilation of the code with .i for preprocessed code, .s for assembly code and .o for (final) binary file which the computer understands 
+// Note: The -[command] are known as flags of gcc
+
+preprocessing = the compiler removes all the comments from the code and includes all code from the libraries which we have mentioned
+compilation = then the preprocessed code is run with fix memory allocated
+assembly = then the code gets converted into assembly lang
+linking = all files are linked together to generate an executable(.exe) file
+----------------------------------
+int a; // this means initializing a variable
+int a = 5; // this means declaring a variable
+----------------------------------
+VARIABLES IN C
+----------------------------------
+fOrMaT sPeCiFiErS
+%c - character
+%f - float
+%d - integer
+%l - long
+%u - 
+%lf - double
+%LF - long double
+
+dEfInInG cOnStAnTs
+const [var type] [var name] = [var value];
+#define PI 3.14 // no need to insert semicolon here
+----------------------------------
+
+Strings in C
+
+---------------
+char name[] = "jeel"; // compiler automatically adds a null character when string is stored as here
+char name[] = {'j','e','e','l','\0'}; // this is how to store individual characters
+
+---------------
+ASSIGNING STRINGS TO ARRAY
+char str1[1];
+scanf("%s", str1); // if you enter a word having more than 1 character, it works perfectly fine!
+printf("%s\n", str1);
+
+BUT
+char str2[2] = "hello";
+printf("%s\n", str2); // this will print only 'he' as we have declared that the array only contains 2 characters, hence the other characters are terminated
+---------------
+
+scanf - This will not store the word entered after a space, i.e. - If you entered James Bond in scanf prompt, it'll only accept and store James from it.
+
+scanf("%s", stringGoesInHere); // To store a string, no need to have an ampersand(&) before the variable
+
+// Ideal way to use strings
+char oneString[4];
+fgets(oneString, 4, stdin);
+puts(oneString);
+
+----------
+
+SWITCH STATEMENT
+The variable being switched in the switch statement must be a char or an int.
+There is no need to include break; in the default statement
+----------
+
+CONTINUE IN C
+int i = 0;
+    while (i < 10)
+    {
+        i++;
+        if (i == 5) // if the i is 5, the below 				code in the block				(in this case, 				printf, won't be 				executed
+        {
+            continue;
+        }
+        printf("%d", i);
+    }
+----------
+
+GOTO   I N   C
+- avoid using it. It is avoided since it causes confusion among fellow programmers in understanding the code
+- It is used when we need to break multiple loops using a single statement at the same time.
+label:
+
+goto label; // this will make the code process jump to where the label is, and process it again
+
+break; // this exits it's own block, but if we want to exit every function block, we can use goto.
+----------
+
+TYPECASTING SYNTAX
+(varType) var
+i.e. - (int) myVar
+
+NOTE: the arithmetic operations done between int and float will have result as int, to get float, we need to typecast while performing the arithmetic op
+----------
+sqrt(2); // * requires math.h * for square rooting 2
+pow(2, 4);
+
+----------
+FUNCTIONS IN C
+
+There are four types of functions in C
+1. Without arguments and without return value
+2. Without arguments and with return value
+3. With arguments and without return value
+4. With argumments and with return value
+
+1. void printTableOfTwo()
+{
+    int i = 0;
+    while (i < 10)
+    {
+        printf("%d X %d = %d\n", 2, i + 1, (i + 1) * 2);
+        i++;
+    }
+}
+2. void getNumber(){
+		int i;
+		scanf("%d",&i);
+		return i;
+	}
+3. void printStar(int numberOfStars){
+	int i=0;
+	while(i<numberOfStars){
+		printf("%c", '*');
+		i++;
+	}
+4. int sum(int a, int b){return a + b;}
+----------
+
+FOR LOOPS
+You can use for loops as
+
+int i=0,j=0;
+for(i<5, j<10, j++){
+	printf("%d %d\n", i,j); // this will iterate 10 times
+}
+
+// This one's fascinating, as the compiler will follow the max(bigger, in this case j<10) condition if it's true or false and will keep incrementing i, so here the j will always be true because it's not incrementing and hence this'll run infinite times!
+int i = 0, j = 0;
+    for (i < 5; j < 10; i++)
+    {
+        printf("%d %d\n", i, j);
+    }
+----------
+
+A TWO DIMENSIONAL ARRAY
+    char great[3 /*The number of elements in the array */][10 /*The number of characters in an element + the null character*/] = {
+        "Behold",
+        "Skywalker",
+        "Luke"};
+
+  0 1 2 3 4 5
+0 B E H O L D
+1 L U K E
+2 S K Y W A L K E R
+
+----------
+----------
+
+STRUCTURES (as OBJECTS in JS) in C
+struct bank
+    {
+        int acc;
+        float balance;
+        char username[64];
+    };
+    struct bank current, savings /* This can be changed to anything, plus you can add more variables too! and then define it like # */;
+    
+    current.balance = 23400.45;
+    current.acc = 185060311;
+    savings.balance = 46900.78; # like this!
+    savings.acc = 185034211;
+
+    printf("your account number is %d, and your current balance is %f", current.acc, savings.balance); // here, the . dot operator is also known as stucture member operator
+
+----------
+    strcpy(tpom.name, "The Psychology of Money"); // this is how you can add a string to a struct variable
+----------
+struct books trbe, tpom; // if we declare this variables inside main(), it won't be used outside main()
+----------
+
+STRUCT TYPEDEF
+	typedef int i; // in the case of simple variable
+    	i myVar = 10; 	// It is used to give an alias to a variable datatype
+TYPEDEF IN STRUCT
+	typedef struct student{
+		char name[50];
+		int enrollment;
+	} std;
+we can use it as following in main():
+	std s1,s2;
+	s1.id = 10;
+----------
+
+TO DEFINE TYPEDEF VARIABLE WHICH WILL MAKE EVERY VARIABLE A POINTER
+int *a,b; // this will make the 'a' varible a pointer, and 'b' a normal int variable, but if we want to make every variable declared to be a pointer, 			then,
+typedef int* intPtr;
+intPtr a,b; // this will make every variable a pointer without inserting an asterisk
+
+----------
+UNIONS IN C
+
+It is user defined datatype, it is very similar to a structure.
+Structure: It allocates different memories to its members
+Unions: It allocates a single shared memory 
+----------
+
+OBJECTS USING STRINGS!
+struct senate
+    {
+        char name[64];
+        int age;
+    };
+
+    struct senate primeMinister = {
+        "Justin Trudeau",
+        34};
+
+// THIS CAN BE ALSO WRITTEN AS THIS!
+// struct senate
+//  {
+//      char name[64];
+//      int age;
+//  }; primeMinister = {
+//      "Justin Trudeau",
+//      34};
+
+    printf("The prime minister of Canada is %s, who is %d years old!", primeMinister.name, primeMinister.age);
+
+----------
+----------
+
+POINTERS
+Pointer variables are used to store an address of a variable,
+i.e. - Suppose my variable is jediMaster, and I want to know its address at which is located in my pc, I'll print with the %p placeholder and write &jediMaster after the comma! But if I want to store it into an another variable I'll do the below!
+
+    int var;
+    int *pointer;
+
+    pointer = &var; // This store the address of var in 'pointer' variable
+    value = *pointer // But this will store the 'pointer' variable's value to the 'value' variable
+
+    printf("%p\n", &var);
+    printf("%p", pointer);
+
+ANOTHER ONE
+int a = 76;
+int *ptra = &a;
+
+%p , &ptra // ptra ek esa variable hai jiske andar to ek variable ka address hai hi, but &ptra uska khudka address hai
+%p , &a // ye a ka address hai
+%p , ptra // a ka address to maine ptra mein store kiya tha, so instead of &a, we can also write ptra only
+%d , *ptra // ye print krta hai vo value jo ki vo address me hai jo address ptra me stored hai(here, a ki value)
+%d , a // ye bhi a ki value print krega, so instead of *ptra, we can write this!
+
+
+int arr[] = {0,1,2};
+%d, arr+1; // This will print the address of second element of the array, not value, not address of first element
+%d, *(arr+1) // This will print the value of second element; This and below statement prints the same
+%d, *(&arr[1]); // This is called value dereferencing
+%d, arr[1]; // our traditional way to print value of an array element
+
+
+here, [int arr[] = {0,1,2};] is a constant, and you cannot change its address or perform arithmetic ops on it like arr++/a--.
+but, you can assign and change value of it like this: int *arrPtr = arr; - - This assigns the original addresses of arr to the *arrPtr and hence we can manipulate those addresses and its values, quite complex!
+
+----------
+----------
+
+#include <stdio.h>
+
+void display(); // function prototype
+
+void main()
+{
+    display();  // function call
+}
+
+void display()
+{
+    puts("Hello!");  // function definition
+}
+
+----------
+----------
+
+Converting the type of a variable -- also known as typecasting
+
+void main()
+{
+    float a = 3.4;
+    printf("%d", (int)(a));
+}
+
+Rounding off in C / Deciding how many digits should be printed after decimal point
+
+float a = 3.45667;
+printf("%.2f", a); // 3.46 (It also rounds off the figure, How cool!)
+ALSO
+printf("Value of d is %14.5f\n", 4.34); // Value of d is        4.34000
+	~> The 14 and 5 in %14.5f is the values to be printed before and after the decimal point, so if there are more values mentioned then the value itself, it'll leave spaces
+
+
+----------
+----------
+
+To get the address of a variable = *a
+To get the variable/constant stored inside an address = *(&a)
+
+int *j; // This means that 'j' is going to be used to store integer addresses,
+vice versa for other variable types
+
+int i = 12, *j = &i; // *j stores the variable stored in i
+printf("value of i = %d\n", i); // 12
+printf("value of j = %d", *j); // 12
+
+----------
+----------
+
+As j is used to store the address of i, we can use k to store the address of j, like this:
+int **k;
+r = &j;
+we can go on and on by adding asterisks like above. as every address storing variable would obviously have their own address too!
+
+----------
+----------
+
+Reference by Value
+void swap(int *a, int *b);
+
+void main()
+{
+    int a = 3, b = 4;
+    printf("value of a and b before swap: %d %d\n", a, b);
+    swap(&a, &b);
+    printf("value of a and b after swap: %d %d\n", a, b);
+}
+
+void swap(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+----------
+----------
+
+*avg = (float)*sum / 2; // this means that the result should be typecasted to float data type
+
+----------
+----------
+
+POINTER TO POINTER
+
+int a = 12;
+    int *b = &a;
+    int **c = &b;
+    int ***d = &c;
+
+    printf("%u\t %u\t %u\t %u\t", a, b, c, d);
+
+----------
+----------
+
+POINTER ARITHMETIC
+
+int a, *p = &a;
+printf("original address of a: %u\n", p);
+p++; // Increases the address by 4 bytes(only in integer and float), whereas it'll only plusplus by 1(1 byte) if 'p' would be char datatype | This'll only change the address that is copied in 'p' and not the original address of a
+printf("plusplused address of a: %u, original address of a: %u\n", p, &a);
+
+----------
+FIBONACCI SERIES USING ITERATIVE AND RECURSIVE METHOD
+----------
+#include <stdio.h>
+
+int fibR(int num)
+{
+    if (num == 1 || num == 2)
+    {
+        return (num - 1);
+    }
+    else
+    {
+        return fibR(num - 1) + fibR(num - 2);
+    }
+}
+
+int fibI(int num)
+{
+    int a = 0, b = 1;
+    for (int i = 0; i < num - 1; i++)
+    {
+        b = a + b;
+        a = b - a;
+    }
+    return a;
+}
+
+int main()
+{
+    int num;
+    printf("Enter number till which you want fibonacci numbers: ");
+    scanf("%d", &num);
+    printf("Iterative Method: %d\nRecursive Method: %d", fibI(num), fibR(num));
+    return 0;
+}
+
+----------
+V E R Y IMPORTANT ! ! !
+----------
+
+FUNCTIONS IN C
+in functions, the parameters passed from the main() function are called 'actual parameters' and when there is a copy made of those actual parameters in the function, they're known as formal parameters
+
+CALL BY VALUE/REFERENCE
+1. When a value is passed as actual and formal parameters, it is called Call By Value
+2. When ann address is passed to a function as a parameter, it is known as Call By Reference
+	i.e. - in main() - funct(&variable); // I'm sending this variable's address to the function as a parameter
+		in whateverFunction(int *variable){ } // I'm receiving the address of the passed variable
+
+Note: Functions wouldn't be able to change the value of a parameter through call by value, but it can change through call by reference, cause it has the address of it!
+
+BEST EXAMPLE: When a smart contract is written on the blockchain, it gets distributed on each and every server working, and if you change one of those smart contract, you won't be able to change them all, but if you change the smart contract as a sudo user/root user/administrator, It will be a disaster!!!
+
+SIMPLE CALL BY REFERENCE EXAMPLE (only variable, not array)
+i.e. int func(int *ptr){
+	*(ptr) will give me the value of the very first element in the array!   
+	*(ptr+1); // this is called dereferencing, through which we'll get the second element of the array(ptr+1 = 2nd element)
+likewise,  *(ptr+2) will give me the value of the third element
+
+void changeValue(int *address){
+	*address = 47;
+}
+
+int main(){
+	int a = 34;
+	changeValue(&a); // now it's value would be 47
+}
+
+ --- By declaring array as a parameter in the function ---
+
+in main():
+	int product = func(arr); // this is how array is passed to a function
+
+in function():
+	int func(int arr[]){for(int i; i<4; i++) 
+	{
+	"%d", arr[i]; // to iterate all elements
+	}
+} // If you change the value of any array element, it'll be reflected in original value
+
+
+SIMPLE CALL BY REFERENCE EXAMPLE (array) --- By passing array's base address to the function ---
+
+Just name of the array (for i.e. arr[10]) has the address of its first element in the name of it(here, arr)
+i.e.
+in function():
+	void func(int *ptr){
+	{for(int i; i<4; i++) 
+	{
+	"%d", arr[i]; // to iterate all elements // you can also write *(ptr+i) instead of arr[i]
+	}
+}
+
+in main():
+	avg = func(arr); // this only passes the address of the first element, then we can change values of all elements by incrementing the address by 1!!! HOW FUCKING AWESOME IS THAT!
+
+
+----------
+----------
+T W O DIMENSIONAL A R R A Y S
+inside main():
+	int arr[][2] = {{1,2}, {3,4}};
+	func(arr);
+
+inside void func(int arr[2][2]):
+	{
+		for(int i=0; i<2; i++){
+			for(int j=0; j<2; j++){
+				printf("The value at %d, %d is %d", i, j, arr[i][j]);
+			}	
+		}
+	}
+
+----------
+----------
+
+\0 - null character
+- a separate character string is stored as char str[] = {'j','e','e','l','\0'}
+- a whole string is stored as char str[] = "jeel";
+
+----------
+Printing Address of each character in a string
+----------
+
+char arr[] = {"jeel"};
+    // scanf("%s", arr);
+    for (int i = 0; i < sizeof(arr); i++)
+    {
+        printf("Address of %c is %u\n", arr[i], &arr[i]);
+}
+
+Out: 
+Address of j is 1520434199
+Address of e is 1520434200
+Address of e is 1520434201
+Address of l is 1520434202
+Address of   is 1520434203 (this is null(\0) character)
+
+----------
+Scanf will not work if entered string have spaces in it
+----------
+In order to allow user enter a sentence with spaces, we use gets() and puts()
+scanf("%s", s) is equivalent to gets(s)
+printf("%s", s) is equivalent to puts(s)
+
+----------
+*ptr = "JEEL" is equivalent to ptr[] = "JEEL";
+----------
+ptr[] initilization method won't allow you to change the content on the existing address
+BUT
+*ptr will allow you to do this!
+
+----------
+Mysterious 'sizeof(str)'
+----------
+when used to analyze the size of an array, like
+	char str[] = "Jeel";
+	printf("%d", sizeof(str));
+It'll output 5(including \0)
+BUT
+when used to analyze the size of a pointer variable, like
+	char *str = "Jeel";
+	printf("%d", sizeof(str));
+It'll output 8(as it is meant to be storing an address of 8 bit!)
+
+
+----------
+Game of string.h
+----------
+strcpy(target, source);
+strcat(oneString, nextString);
+strcmp
+
+----------
+FFLUSH(STDIN);
+The fflush(stdin); clears the previous input
+void zoop() // in order to flush the previous input (healthier alternative of fflush(stdin))
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF)
+    {
+    }
+}
+----------
+
+IF WANT TO CHANGE INDIVIDUAL ELEMENTS OF AN ARRAY, USE ARRAY[] METHOD, OTHERWISE *ARRAY WOULD WORK!
+
+YOU CAN USE gets() to enter strings with spaces!
+
+
+----------
+THE indeSTRUCTible IN C (as Object in JS)
+----------
+
+struct employee
+{
+    int code;
+    float salary;
+    char name[50];
+};
+void main()
+{
+    struct employee e1; // can have e1[100] = array of structures
+    printf("Enter the name of employee");
+    scanf("%s", e1.name); // strcpy(e1.name,"Jeel") if want to manually store a string
+}
+------------
+CREATING AN ALIAS OF STRUCT
+------------
+This creates an alias of the struct! So, now you don't need to write 'struct employee' in 'struct employee e1'
+typedef struct employee
+{
+    int code;
+    float salary;
+    char name[50];
+} emp;
+
+------------
+ALTERNATE WAY TO INITIALIZE STRUCT
+------------
+a struct can be initialized as this too:
+	struct employee e1 = {100, 100, "Jeel"}; // data inserted should be in proper sequence
+------------
+RESET A STRUCT
+------------
+to reset a struct
+	struct employee e1 = {0};
+
+----------
+MAKING POINTER VARIABLES IN STRUCT
+----------
+
+struct employee e1;
+struct employee *ptr;
+
+ptr = &e1;
+(*ptr).code = 101; // you can also write ptr->code = 101;
+
+------------
+FILES I/O
+------------
+FILE *ptr;
+    ptr = fopen("tes.c", "a");
+
+2 Types of files - Text files(.txt,.c) & Binary files(.jpg,.bat)
+
+------------
+READ AND FETCH DATA FROM DIFFERENT FILE
+------------
+fscanf(ptr, "%d", &num); // it works similar to normal scanf, but this one deals with files, its format is fscanf([source_variable], [data_type_to_capture], [target_variable])
+
+I.E
+FILE *ptr;
+ptr = fopen("tes.c", "r");
+int num;
+int num2;
+fscanf(ptr, "%d", &num);
+fscanf(ptr, "%d", &num2); // the value after space will be stored in num2
+printf("%d", num);
+
+fclose(ptr); // close a file after you've used it and not going to use it again
+
+------------
+WRITE A FILE
+------------
+FILE *ptr;
+ptr = fopen("generated.c", "w"); //File will be created if doesn't exist
+fprintf(ptr, "Hello World!"); // If changed the content, the previous content would be replaced completely
+fprintf(ptr, "Let us C!"); // This will print exactly in the same manner as we use printf to print in the console
+
+------------
+READ FILE
+------------
+FILE *ptr;
+    ptr = fopen("generated.txt", "r");
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%c\n", fgetc(ptr));
+    }
+
+------------
+PUTS() IN FILE I/O // Prints data in other files
+------------
+FILE *ptr;
+ptr = fopen("generated.txt", "w");
+putc('j', ptr); // you can only print one character in other file with this (you can always use a for loop though!)
+fclose(ptr);
+
+------------
+GETS() IN FILE I/O // Gets data from other files
+------------
+FILE *ptr;
+    ptr = fopen("generated.txt", "r");
+    char c = fgetc(ptr);
+    while (c != EOF) // This fetches and prints every character from the other file // EOF = End of File
+    {
+        printf("%c", c);
+        c = fgetc(ptr);
+    }
+
+------------
+dynamiC (Memory Allocation - malloc)(contiguos allocation - calloc)
+------------
+int *ptr;
+ptr = malloc(6*4); // I want 6 integers with 4 byte capacity, but to improve the accessibility of the program, we would use 'sizeof(int)' instead of 4 so that lower and higher end PCs with more bytes can also work seamlessly
+
+------------
+ptr = (int*) malloc(30*sizeof(int)); // (int*) here is typecasting, as the malloc function returns void, we've to convert it into integer(or the datatype that you want) -- we can use ptr afterwards as an array, and it will continue allocating memory dynamically
+------------
+
+ptr = (float*) calloc(6, sizeof(float)); // allocates contiguos space in memory. It allocates on the spot, and not dynamically, hence when printed a variable without storing any data, it will show 0
+
+// Difference between malloc and calloc is that malloc initializes our memory with garbage values and calloc initializes with 0
