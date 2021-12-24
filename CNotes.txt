@@ -40,6 +40,11 @@ To use the variable outside your function, and from global scope, you need to in
 i.e. int func(){ extern int sum; }
 	int sum = 343; // in order to use this variable, we must use extern inside the func()
 ----------------------------------
+PRINTING RANDOM INTEGERS BETWEEN 1 AND 1OO
+srand(time(NULL));
+    int random = rand() % 100; // replace '100' with the number till which's range you want the random number from
+    printf("%d", random);
+----------------------------------
 
 Strings in C
 
@@ -253,7 +258,20 @@ i.e. - Suppose my variable is jediMaster, and I want to know its address at whic
 
     printf("%p\n", &var);
     printf("%p", pointer);
-
+---------------------------------
+VOID POINTER
+Void Pointers is like a general container, which you can use for any purpose
+- It can be typecasted into any variable datatype
+- You can't dereference it through our traditional pointer dereferencing way! You need to first typecast the void pointer into the datatype of which the data is on the address location, so, if you don't know the datatype of variable stored, you won't be able to dereference it/get the value stored in it
+i.e.
+    int y = 7;
+    float z = 1.3;
+    void *ptr;
+    ptr = &y;
+    printf("%d", *((int *)ptr));
+    ptr = &z; // we can use void pointer like this, to store and display two kinds of data, that's why it is known as 'general purpose' pointer
+    printf("%f", *((float *)ptr));
+---------------------------------
 ANOTHER ONE
 int a = 76;
 int *ptra = &a;
