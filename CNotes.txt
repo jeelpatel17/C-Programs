@@ -714,3 +714,21 @@ ptr = (int*) malloc(30*sizeof(int)); // (int*) here is typecasting, as the mallo
 ptr = (float*) calloc(6, sizeof(float)); // allocates contiguos space in memory. It allocates on the spot, and not dynamically, hence when printed a variable without storing any data, it will show 0
 
 // Difference between malloc and calloc is that malloc initializes our memory with garbage values and calloc initializes with 0
+
+------------
+
+Void Pointer is a general purpose pointer(which is like a general purpose container, which can be use to store anything from detergent to food, etc. and not limited to only one purpose). It can be transformed to any variable datatype
+
+Null Pointer is a way to make a pointer variable be NULL(0) so that no-one can dereference it. It will make the pointer variable point no longer to a garbage value, hence you'll have one less possibility of an error
+i.e. Null pointer can be checked if it is null and then use it, but if null pointer isn't made null beforehand, it can cause troubles inside your program
+another i.e. - You will want to store in a pointer only if it isn't NULL(because you've made it null), so that you don't continue your program taking a garbage value instead(illustration below)
+-> 
+int a = 3;
+int *ptr = &a;
+if(ptr != NULL)  // checks if the pointer is null or not to avoid troubles caused later in the code
+	printf("The address of a is %d", *ptr);
+else{
+	printf("The pointer is a null pointer and can't be dereferenced");
+}
+
+Dangling Pointer - The pointer which is pointing to the variable which is deleted or deallocated now 
