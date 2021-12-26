@@ -665,13 +665,14 @@ ptr = &e1;
 FILES I/O
 ------------
 FILE *ptr;
-    ptr = fopen("tes.c", "a");
+ptr = fopen("tes.c", "a"); // this appends data to existing data
 
 2 Types of files - Text files(.txt,.c) & Binary files(.jpg,.bat)
 
 ------------
 READ AND FETCH DATA FROM DIFFERENT FILE
 ------------
+
 fscanf(ptr, "%d", &num); // it works similar to normal scanf, but this one deals with files, its format is fscanf([source_variable], [data_type_to_capture], [target_variable])
 
 I.E
@@ -690,15 +691,23 @@ WRITE A FILE
 ------------
 FILE *ptr;
 ptr = fopen("generated.c", "w"); //File will be created if doesn't exist
+char string[50] = "Hello C";
 fprintf(ptr, "Hello World!"); // If changed the content, the previous content would be replaced completely
-fprintf(ptr, "Let us C!"); // This will print exactly in the same manner as we use printf to print in the console
+fprintf(ptr, "%s", string); // print data to 'ptr', the datatype is '%s', and the data which will be printed is in 'string' variable
 
 ------------
 READ FILE
 ------------
-FILE *ptr;
-    ptr = fopen("generated.txt", "r");
-    for (int i = 0; i < 10; i++)
+FILE *ptr = NULL; // It is a healthy practice to NULL a pointer to avoid future errors
+char string[50];
+ptr = fopen("generated.txt", "r");
+
+// to fetch a word
+fscanf(ptr, "%s", string); // ptr = the file from which we're fetching, %s = the datatype of which the data is, "string" = the variable in which the fetched data will be stored in
+printf("%s",string);    
+
+// to fetch a word/sentence character by character
+for (int i = 0; i < 10; i++)
     {
         printf("%c\n", fgetc(ptr));
     }
@@ -709,18 +718,17 @@ PUTS() IN FILE I/O // Prints data in other files
 FILE *ptr;
 ptr = fopen("generated.txt", "w");
 putc('j', ptr); // you can only print one character in other file with this (you can always use a for loop though!)
-fclose(ptr);
+fclose(ptr); // to free up the program memory
 
 ------------
-GETS() IN FILE I/O // Gets data from other files
 ------------
-FILE *ptr;
-    ptr = fopen("generated.txt", "r");
-    char c = fgetc(ptr);
+FILE *fptr;
+    fptr = fopen("generated.txt", "r");
+    char c = fgetc(fptr);
     while (c != EOF) // This fetches and prints every character from the other file // EOF = End of File
     {
         printf("%c", c);
-        c = fgetc(ptr);
+        c = fgetc(fptr);
     }
 
 ------------
