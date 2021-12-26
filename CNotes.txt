@@ -9,7 +9,14 @@ compilation = then the preprocessed code is run with fix memory allocated
 assembly = then the code gets converted into assembly lang
 linking = all files are linked together to generate an executable(.exe) file
 
+PREPROCESSORS IN C
 #include "code.c" // this is how to include other file's code into another code, like npm in JS
+#define PI 3.14 // this is called a macro, more on that later
+#define SQUARE(r) r*r // this means whenever there will be SQUARE(r) written, it'll be replaced by r*r
+#undef // it makes macro undefined
+#pragma // to issue some advanced/special commands to the compiler
+#ifdef // if a macro is defined, it returns true(1)
+#ifndef // if a macro isn't defined, it returns true
 ----------------------------------
 int a; // this means initializing a variable
 int a = 5; // this means declaring a variable
