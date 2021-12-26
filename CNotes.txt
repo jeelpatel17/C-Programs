@@ -17,6 +17,21 @@ PREPROCESSORS IN C
 #pragma // to issue some advanced/special commands to the compiler
 #ifdef // if a macro is defined, it returns true(1)
 #ifndef // if a macro isn't defined, it returns true
+
+PREPROCESSOR DIRECTIVES
+printf("The file name is %s\n", __FILE__);               // To print the file name
+    printf("Today's date is %s\n", __DATE__);                // To print the date
+    printf("The time is %s\n", __TIME__);                    // To print the time
+    printf("Compiled with ANSI Standards?: %d\n", __STDC__); // To check if your code is compiled using ANSI Standards, 1 if yes, 0 if no
+
+#ifdef DATE // if date is defined, than only go in this, otherwise don't
+    printf("%s", __DATE__);
+#endif
+
+#ifndef TIME // if time is NOT defined, than only go in this, otherwise don't
+    printf("%s", __TIME__);
+#endif
+
 ----------------------------------
 int a; // this means initializing a variable
 int a = 5; // this means declaring a variable
