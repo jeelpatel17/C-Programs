@@ -732,3 +732,8 @@ else{
 }
 
 Dangling Pointer - The pointer which is pointing to the variable which is deleted or deallocated now 
+Wild Pointer - Uninitialized pointer variable is called wild pointer,
+i.e.
+int a;
+int *ptr;
+ptr = &a; // ptr is not a wild pointer anymore
