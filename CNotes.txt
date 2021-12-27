@@ -767,3 +767,79 @@ i.e.
 int a;
 int *ptr;
 ptr = &a; // ptr is not a wild pointer anymore
+
+---------------------------------
+---------------------------------
+
+COMMAND LINE ARGUMENTS
+
+***************************ARGC & ARGV*************************
+int main(int argc, char const *argv[]); // here, argc is the first argument when giving input in the main() function, and argv is an array in which every command is stored, and it has atleast one command, which is the file name(i.e. zero.exe)
+
+{
+	printf("argc: %d", argc); // this will print 3 if the command in the terminal is something like this = = ./zero.exe jeel patel, the 1st being its file name, and the both strings as separate arguments
+}
+
+another example: 
+// printing all the arguments that are stored in argv[] array
+
+for(int i=0; i<argc; i++){
+	printf("argument:%d, value: %s", i, argv[i]); // the code needs to be saved and executed before inputting "./zero.exe jeel patel" in the terminal
+}
+
+Note: argv[] always have the file address in its index[0]
+
+Output:
+argument: 0, value: C:\Users\JEEL\Desktop\C-Programs\FullCWHCourse\zero.exe
+argument: 1, value: jeel
+argument: 2, value: patel
+
+IN ORDER TO UNDERGO ARITHMETIC INSTRUCTIONS, WE NEED TO CONVERT THE ARGUMENTS INTO INT(which are integers with double-quotes!)
+printf("%d\n", (atoi(argv[1])) + (atoi(argv[2])));
+
+------------------------------------------------
+------------------------------------------------
+
+THE POINTERS WHICH POINT TO A FUNCTION 'AKA' FUNCTION POINTERS
+
+Note: Unlike normal pointers, we do not allocate/de-allocate memory using function pointers
+i.e.
+int sum(int a, int b)
+{
+    return a + b;
+}
+int main()
+{
+    int (*fPtr)(int, int); // point to a function which takes 2 integers as parameters and returns int as well
+    fPtr = &sum;           // now, store the address where sum function is located, you can avoid '&' before 'sum'
+    int d = (*fPtr)(4, 6); // the (*fPtr) would be replaced with sum and will fetch function outcome. This is also known as 'Dereferencing a function pointer'
+    printf("%d", d);
+    return 0;
+}
+
+CALLBACK FUNCTIONS
+- Function Pointers are used to pass a function to a function
+- This passed function can be called again, hence named 'Callback Function'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
