@@ -11,7 +11,7 @@ linking = all files are linked together to generate an executable(.exe) file
 
 PREPROCESSORS IN C
 #include "code.c" // this is how to include other file's code into another code, like npm in JS
-#define PI 3.14 // this is called a macro, more on that later
+#define PI 3.14 // this is called a macro, aka, the define directive
 #define SQUARE(r) r*r // this means whenever there will be SQUARE(r) written, it'll be replaced by r*r
 #undef // it makes macro undefined
 #pragma // to issue some advanced/special commands to the compiler
@@ -694,6 +694,7 @@ ptr = fopen("generated.c", "w"); //File will be created if doesn't exist
 char string[50] = "Hello C";
 fprintf(ptr, "Hello World!"); // If changed the content, the previous content would be replaced completely
 fprintf(ptr, "%s", string); // print data to 'ptr', the datatype is '%s', and the data which will be printed is in 'string' variable
+fclose(ptr); // to free up the program memory
 
 ------------
 READ FILE
@@ -704,32 +705,58 @@ ptr = fopen("generated.txt", "r");
 
 // to fetch a word
 fscanf(ptr, "%s", string); // ptr = the file from which we're fetching, %s = the datatype of which the data is, "string" = the variable in which the fetched data will be stored in
-printf("%s",string);    
+printf("%s",string);
 
 // to fetch a word/sentence character by character
 for (int i = 0; i < 10; i++)
     {
         printf("%c\n", fgetc(ptr));
     }
+fclose(ptr); // to free up the program memory
 
 ------------
 PUTS() IN FILE I/O // Prints data in other files
 ------------
 FILE *ptr;
 ptr = fopen("generated.txt", "w");
-putc('j', ptr); // you can only print one character in other file with this (you can always use a for loop though!)
+putc('j', ptr); // you can only print one character in other file with this, or you can replace putc with puts and write a whole string
 fclose(ptr); // to free up the program memory
 
 ------------
 ------------
 FILE *fptr;
     fptr = fopen("generated.txt", "r");
-    char c = fgetc(fptr);
-    while (c != EOF) // This fetches and prints every character from the other file // EOF = End of File
+    char c = fgetc(fptr); // This fetches and prints every character from the other file, or you can use fgets to fetch a whole string
+    while (c != EOF) // EOF = End of File
     {
         printf("%c", c);
         c = fgetc(fptr);
     }
+	fclose(ptr); // to free up the program memory
+
+------------
+------------
+ADVANCED FILE I/O METHODS
+
+r - 	Opens an existing text file for reading.
+
+w - 	Opens a file for writing.
+	Creates a file if it does not exist.
+	Writing starts from the beginning of the file.
+
+a - 	Opens a text file for writing in appending mode.
+	Creates a file if it does not exist.
+	The program will start appending content to the existing file content.
+
+r+ - 	This mode will open a text file for both reading and writing
+
+wt - 	Opens a text file for both reading and writing. 
+	Creates a file if it does not exist.
+	It replaces every content when written.
+
+a+ - 	Opens a text file for both reading and writing. 
+	Creates a file if it does not exist.
+	It can only append to file.
 
 ------------
 dynamiC (Memory Allocation - malloc)(contiguos allocation - calloc)
@@ -746,6 +773,7 @@ ptr = (float*) calloc(6, sizeof(float)); // allocates contiguos space in memory.
 // Difference between malloc and calloc is that malloc initializes our memory with garbage values and calloc initializes with 0
 
 ------------
+POINTER TYPES
 
 Void Pointer is a general purpose pointer(which is like a general purpose container, which can be use to store anything from detergent to food, etc. and not limited to only one purpose). It can be transformed to any variable datatype
 
@@ -817,12 +845,55 @@ int main()
     return 0;
 }
 
+---------------------------------------------------
+---------------------------------------------------
+
 CALLBACK FUNCTIONS
 - Function Pointers are used to pass a function to a function
 - This passed function can be called again, hence named 'Callback Function'
 
+i.e.
 
+int sum(int a, int b)
+{
+    return a + b;
+}
+void greet(int (*fPointer)(int, int))
+{
+    printf("Hello user, your sum is %d", fPointer(12, 5)); // this is how you can call one function into another
+}
+int main()
+{
+    int (*fPtr)(int, int); // giving the ability to store a function's address to fPtr. which will return integer in future and will take 2 integers as parameters
+    fPtr = sum;            // giving address of 'sum' to ptr
+    greet(fPtr);           // this is how passing a function into another as an argument
+    return 0;
+}
 
+---------------------------------------------------
+---------------------------------------------------
+
+Alternative example of 'area of circle' by harry bhai;
+addition and subtraction illustrating callback functions:
+
+int sumSub(int a, int b)
+{
+    printf("Sum: %d, Subtraction: %d", a + b, a - b);
+}
+int middleMen(int a, int b, int (*sumSub)(int, int))
+{
+    return sumSub(a, b);
+}
+int main()
+{
+    int ae, bi, addSub;
+    printf("Enter 1 number: ");
+    scanf("%d", &ae);
+    printf("Enter 2 number: ");
+    scanf("%d", &bi);
+    addSub = middleMen(ae, bi, sumSub);
+    return 0;
+}
 
 
 
