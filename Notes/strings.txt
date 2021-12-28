@@ -1,0 +1,27 @@
+----------------------------------
+Strings
+	char name[] = "jeel"; // compiler automatically adds a null character when string is stored as here
+	char name[] = {'j','e','e','l','\0'}; // this is how to store individual characters
+---------------
+Storing Strings into an Array
+	char str1[1];
+	scanf("%s", str1); // if you enter a word having more than 1 character, it works perfectly fine!
+	printf("%s\n", str1);
+
+	BUT
+
+	char str2[2] = "hello";
+	printf("%s\n", str2); // this will print only 'he' as we have declared that the array only contains 2 characters, hence the other characters are terminated
+---------------
+Scanf() not lettin you allow enter sentences with spaces!
+	If you entered James Bond in scanf prompt, it'll only accept and store James from it.
+
+Note: scanf("%s", stringGoesInHere); // To store a string, no need to have an ampersand(&) before the variable
+---------------
+Ideal Way to Capture Strings
+	char oneString[4];
+	fgets(oneString, 4, stdin); // 'oneString' where it is going to be stored, '4' the max length of the string going to be captured, 'stdin' formality
+----------
+In order to allow user enter a sentence with spaces, we use gets() and puts()
+scanf("%s", s) is equivalent to gets(s)
+printf("%s", s) is equivalent to puts(s)

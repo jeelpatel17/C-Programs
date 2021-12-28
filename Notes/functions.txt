@@ -1,0 +1,213 @@
+FUNCTIONS
+
+----------
+A SMALL THEORY
+
+#include <stdio.h>
+
+void display(); // function prototype
+
+void main()
+{
+    display();  // function call
+}
+
+void display()
+{
+    puts("Hello!");  // function definition
+}
+
+-----------------------
+
+There are four types of functions in C
+	1. Without arguments and without return value
+	2. Without arguments and with return value
+	3. With arguments and without return value
+	4. With argumments and with return value
+i.e.
+ 1. void printTableOfTwo()
+ {
+    int i = 0;
+    while (i < 10)
+    {
+        printf("%d X %d = %d\n", 2, i + 1, (i + 1) * 2);
+        i++;
+    }
+ }
+ 2. void getNumber(){
+		int i;
+		scanf("%d",&i);
+		return i;
+	}
+ 3. void printStar(int numberOfStars){
+	int i=0;
+	while(i<numberOfStars){
+		printf("%c", '*');
+		i++;
+	}
+ 4. int sum(int a, int b){return a + b;}
+
+----------------------------------------------------------
+V E R Y IMPORTANT ! ! ! - - CALL BY VALUE/REFERENCE
+----------
+FUNCTIONS IN C
+in functions, the parameters passed from the main() function are called 'actual parameters' and when there is a copy made of those actual parameters in the function, they're known as formal parameters
+
+CALL BY VALUE/REFERENCE
+1. When a value is passed as actual and formal parameters, it is called Call By Value
+2. When ann address is passed to a function as a parameter, it is known as Call By Reference
+	i.e. - in main() - funct(&variable); // I'm sending this variable's address to the function as a parameter
+		in whateverFunction(int *variable){ } // I'm receiving the address of the passed variable
+
+Note: Functions wouldn't be able to change the value of a parameter through call by value, but it can change through call by reference, cause it has the address of it!
+
+BEST EXAMPLE: When a smart contract is written on the blockchain, it gets distributed on each and every server working, and if you change one of those smart contract, you won't be able to change them all, but if you change the smart contract as a sudo user/root user/administrator, It will be a disaster!!!
+
+----------------------------------------------------------
+
+GENERAL C FUNCTIONS
+
+----------------------------------
+Switch Statement
+	The variable being switched in the switch statement must be a char or an int.
+	There is no need to include break; in the default statement
+----------
+CONTINUE IN C
+    int i = 0;
+    while (i < 10)
+    {
+        i++;
+        if (i == 5) // if the i is 5, the below code in the block(in this case, printf, won't be executed
+        {
+            continue;
+        }
+        printf("%d", i);
+    }
+----------
+GOTO label;
+Note: avoid using it. It is avoided since it causes confusion among fellow programmers in understanding the code;
+	It is used when we need to break multiple loops using a single statement at the same time.
+i.e.
+	label:
+
+	goto label; // this will make the code process jump to where the label is, and process it again
+
+	break; // this exits it's own block, but if we want to exit every function block, we can use goto.
+----------
+sqrt(2); // * requires math.h * for square rooting 2
+pow(x, y) // x is the power of 'y', which is exponent(superscripted)
+----------
+FOR LOOP
+You can use for loops as
+
+i.e.
+
+int i=0,j=0;
+for(i<5, j<10, j++){
+	printf("%d %d\n", i,j); // this will iterate 10 times
+}
+
+INFINITE Fascinating FOR LOOP i.e.
+
+int i = 0, j = 0;
+    for (i < 5; j < 10; i++) // // As the compiler will follow orders of the max(bigger, in this case - j<10) condition if it's true or false and will keep incrementing i, so here the j will always be true because it's not incrementing and hence this'll run infinite times!
+    {
+        printf("%d %d\n", i, j);
+    }
+------------------------------
+FIBONACCI SERIES USING ITERATIVE AND RECURSIVE METHOD
+----------
+#include <stdio.h>
+
+int fibR(int num)
+{
+    if (num == 1 || num == 2)
+    {
+        return (num - 1);
+    }
+    else
+    {
+        return fibR(num - 1) + fibR(num - 2);
+    }
+}
+
+int fibI(int num)
+{
+    int a = 0, b = 1;
+    for (int i = 0; i < num - 1; i++)
+    {
+        b = a + b;
+        a = b - a;
+    }
+    return a;
+}
+
+int main()
+{
+    int num;
+    printf("Enter number till which you want fibonacci numbers: ");
+    scanf("%d", &num);
+    printf("Iterative Method: %d\nRecursive Method: %d", fibI(num), fibR(num));
+    return 0;
+}
+--------------------
+
+Mysterious 'sizeof(str)'
+----------
+when used to analyze the size of an array, like
+	char str[] = "Jeel";
+	printf("%d", sizeof(str));
+It'll output 5(including \0)
+BUT
+when used to analyze the size of a pointer variable, like
+	char *str = "Jeel";
+	printf("%d", sizeof(str));
+It'll output 8(as it is meant to be storing an address of 8 bit!)
+----------------------------------------------
+
+CALLBACK FUNCTIONS
+
+- Function Pointers are used to pass a function to a function
+- This passed function can be called again, hence named 'Callback Function'
+
+i.e.
+
+int sum(int a, int b)
+{
+    return a + b;
+}
+void greet(int (*fPointer)(int, int))
+{
+    printf("Hello user, your sum is %d", fPointer(12, 5)); // this is how you can call one function into another
+}
+int main()
+{
+    int (*fPtr)(int, int); // giving the ability to store a function's address to fPtr. which will return integer in future and will take 2 integers as parameters
+    fPtr = sum;            // giving address of 'sum' to ptr
+    greet(fPtr);           // this is how passing a function into another as an argument
+    return 0;
+}
+
+CALLBACK FUNCTIONS ILLUSTRATION
+
+Alternative example of 'area of circle' by harry bhai;
+addition and subtraction illustrating callback functions:
+
+int sumSub(int a, int b)
+{
+    printf("Sum: %d, Subtraction: %d", a + b, a - b);
+}
+int middleMen(int a, int b, int (*sumSub)(int, int))
+{
+    return sumSub(a, b);
+}
+int main()
+{
+    int ae, bi, addSub;
+    printf("Enter 1 number: ");
+    scanf("%d", &ae);
+    printf("Enter 2 number: ");
+    scanf("%d", &bi);
+    addSub = middleMen(ae, bi, sumSub);
+    return 0;
+}

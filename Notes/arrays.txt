@@ -1,0 +1,59 @@
+--------------------
+'*ptr = "JEEL"' is equivalent to 'ptr[] = "JEEL";'
+----------
+ptr[] initilization method won't allow you to change the content on the existing address
+BUT
+'*ptr' will allow you to do this!
+----------
+Mysterious 'sizeof(str)'
+----------
+when used to analyze the size of an array, like
+	char str[] = "Jeel";
+	printf("%d", sizeof(str));
+It'll output 5(including \0)
+BUT
+when used to analyze the size of a pointer variable, like
+	char *str = "Jeel";
+	printf("%d", sizeof(str));
+It'll output 8(as it is meant to be storing an address of 8 bit!)
+
+------------
+dynamiC (Memory Allocation - malloc)(contiguos allocation - calloc)
+------------
+int *ptr;
+ptr = malloc(6*4); // I want 6 integers with 4 byte capacity, but to improve the accessibility of the program, we would use 'sizeof(int)' instead of 4 so that lower and higher end PCs with more bytes can also work seamlessly
+
+------------
+ptr = (int*) malloc(30*sizeof(int)); // (int*) here is typecasting, as the malloc function returns void, we've to convert it into integer(or the datatype that you want) -- we can use ptr afterwards as an array, and it will continue allocating memory dynamically
+------------
+
+ptr = (float*) calloc(6, sizeof(float)); // allocates contiguos space in memory. It allocates on the spot, and not dynamically, hence when printed a variable without storing any data, it will show 0
+
+// Difference between malloc and calloc is that malloc initializes our memory with garbage values and calloc initializes with 0
+-------------------------------------------------------------------------
+
+TWO DIMENSIONAL ARRAY
+i.e.
+    char great[3][10] = { //  '3' is the number of elements in the array; '10' is the number of characters in an element + the null character
+        "Behold",
+        "Skywalker",
+        "Luke"};
+
+  0 1 2 3 4 5
+0 B E H O L D
+1 L U K E
+2 S K Y W A L K E R
+--------------------
+i.e.
+inside main():
+	int arr[][2] = {{1,2}, {3,4}};
+	func(arr);
+
+inside void func(int arr[2][2]):
+	{
+		for(int i=0; i<2; i++){
+			for(int j=0; j<2; j++){
+				printf("The value at %d, %d is %d", i, j, arr[i][j]);
+			}	
+		}
+	}

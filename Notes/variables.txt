@@ -1,0 +1,77 @@
+VARIABLES IN C
+----------------------------------
+Format Specifiers
+ %c - character
+ %f - float
+ %d - integer
+ %l - long
+ %u - unsigned
+ %ul - unsigned long
+ %lf - double
+ %LF - long double
+----------------------------------
+int a; // this means initializing a variable
+int a = 5; // this means declaring a variable
+----------------------------------
+Constants
+ const [var type] [var name] = [var value];
+ #define PI 3.14 // no need to insert semicolon here
+----------------------------------
+Storage Classes aka Types of Variables
+	1.Automatic Variables // the most common, the variable decides itself if it is local or global
+	2.External Variables // the global variables, which should be avoided, as any function can change it and will not free-up the memory allocated to it until the whole program is over
+	3.Static Variables // the variables which are constant, which holds the previous value they had been assigned
+	4.Register Variables // the cpu decides if a register is available to store and process data in the processor memory. It is generally used to store the variables which are frequently used in the program
+----------------------------------
+Extern
+- To use the variable outside your function, and from global scope, you need to insert 'extern' before declaring the variable, but not defining it.
+ 	i.e. int func(){ extern int sum; }
+		int sum = 343; // in order to use this variable, we must use extern inside the func()
+----------------------------------
+Random
+	srand(time(NULL));
+	int random = rand() % 100; // replace '100' with the number till which's range you want the random number from
+	printf("%d", random);
+-----------------------------------
+Typecasting
+	(varType) var
+	i.e. - (int) myVar
+
+	NOTE: the arithmetic operations done between int and float will have result as int, to get the result as 'float', we need to typecast while performing the arithmetic op
+------------------------------------
+TO DEFINE TYPEDEF VARIABLE WHICH WILL MAKE EVERY VARIABLE A POINTER
+int *a,b; // this will make the 'a' varible a pointer, and 'b' a normal int variable, but if we want to make every variable declared to be a pointer, 			then,
+typedef int* intPtr;
+intPtr a,b; // this will make every variable a pointer without inserting an asterisk
+----------------------------------------
+INITIALIZING STRUCT VARS USING STRINGS!
+struct senate
+    {
+        char name[64];
+        int age;
+    };
+
+    struct senate primeMinister = {
+        "Justin Trudeau",
+        34};
+
+// THIS CAN BE ALSO WRITTEN AS THIS!
+// struct senate
+//  {
+//      char name[64];
+//      int age;
+//  }; 
+	primeMinister = {
+//      "Justin Trudeau",
+//      34};
+
+    printf("The prime minister of Canada is %s, who is %d years old!", primeMinister.name, primeMinister.age);
+--------------------------------------
+
+Rounding off in C / Deciding how many digits should be printed after decimal point
+
+float a = 3.45667;
+printf("%.2f", a); // 3.46 (It also rounds off the figure, How cool!)
+ALSO
+printf("Value of d is %14.5f\n", 4.34); // Value of d is 4.34000
+	~> The 14 and 5 in %14.5f is the values to be printed before and after the decimal point, so if there are more values mentioned then the value itself, it'll leave spaces

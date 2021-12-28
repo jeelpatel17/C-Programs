@@ -1,0 +1,114 @@
+STRUCTURES
+i.e.
+struct bank
+    {
+        int acc;
+        float balance;
+        char username[64];
+    };
+    struct bank current, savings /* This can be changed to anything, plus you can add more variables too! and then define it like # */;
+    
+    current.balance = 23400.45;
+    current.acc = 185060311;
+    savings.balance = 46900.78; # like this!
+    savings.acc = 185034211;
+
+    printf("your account number is %d, and your current balance is %f", current.acc, savings.balance); // here, the . dot operator is also known as stucture member operator
+
+----------
+    strcpy(tpom.name, "The Psychology of Money"); // this is how you can add a string to a struct variable
+----------
+struct books trbe, tpom; // if we declare this variables inside main(), it won't be used outside main()
+----------
+
+STRUCT TYPEDEF
+	typedef int i; // in the case of simple variable
+    	i myVar = 10; 	// It is used to give an alias to a variable datatype
+TYPEDEF IN STRUCT
+	typedef struct student{
+		char name[50];
+		int enrollment;
+	} std;
+we can use it as following in main():
+	std s1,s2;
+	s1.id = 10;
+----------
+
+-----------------------------------------
+THE indeSTRUCTible IN C (as Object in JS)
+----------
+
+struct employee
+{
+    int code;
+    float salary;
+    char name[50];
+};
+void main()
+{
+    struct employee e1; // can have e1[100] = array of structures
+    printf("Enter the name of employee");
+    scanf("%s", e1.name); // strcpy(e1.name,"Jeel") if want to manually store a string
+}
+------------
+CREATING AN ALIAS OF STRUCT
+------------
+This creates an alias of the struct! So, now you don't need to write 'struct employee' in 'struct employee e1'
+typedef struct employee
+{
+    int code;
+    float salary;
+    char name[50];
+} emp;
+
+------------
+ALTERNATE WAY TO INITIALIZE STRUCT
+------------
+a struct can be initialized as this too:
+	struct employee e1 = {100, 100, "Jeel"}; // data inserted should be in proper sequence
+------------
+RESET A STRUCT
+------------
+to reset a struct
+	struct employee e1 = {0};
+
+----------
+MAKING POINTER VARIABLES IN STRUCT
+----------
+
+struct employee e1;
+struct employee *ptr;
+
+ptr = &e1;
+(*ptr).code = 101; // you can also write ptr->code = 101;
+
+----------
+UNIONS IN C
+
+It is user defined datatype, it is very similar to a structure.
+Structure: It allocates different memories to its members
+Unions: It allocates a single shared memory 
+----------
+
+INITIALIZING STRUCT VARS USING STRINGS!
+struct senate
+    {
+        char name[64];
+        int age;
+    };
+
+    struct senate primeMinister = {
+        "Justin Trudeau",
+        34};
+
+// THIS CAN BE ALSO WRITTEN AS THIS!
+// struct senate
+//  {
+//      char name[64];
+//      int age;
+//  }; 
+	primeMinister = {
+//      "Justin Trudeau",
+//      34};
+
+    printf("The prime minister of Canada is %s, who is %d years old!", primeMinister.name, primeMinister.age);

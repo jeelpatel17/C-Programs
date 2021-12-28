@@ -1,0 +1,96 @@
+------------
+FILES I/O
+------------
+FILE *ptr;
+ptr = fopen("tes.c", "a"); // this appends data to existing data
+
+2 Types of files - Text files(.txt,.c) & Binary files(.jpg,.bat)
+
+------------
+READ AND FETCH DATA FROM DIFFERENT FILE
+------------
+
+fscanf(ptr, "%d", &num); // it works similar to normal scanf, but this one deals with files, its format is fscanf([source_variable], [data_type_to_capture], [target_variable])
+
+I.E
+FILE *ptr;
+ptr = fopen("tes.c", "r");
+int num;
+int num2;
+fscanf(ptr, "%d", &num);
+fscanf(ptr, "%d", &num2); // the value after space will be stored in num2
+printf("%d", num);
+
+fclose(ptr); // close a file after you've used it and not going to use it again
+
+------------
+WRITE A FILE
+------------
+FILE *ptr;
+ptr = fopen("generated.c", "w"); //File will be created if doesn't exist
+char string[50] = "Hello C";
+fprintf(ptr, "Hello World!"); // If changed the content, the previous content would be replaced completely
+fprintf(ptr, "%s", string); // print data to 'ptr', the datatype is '%s', and the data which will be printed is in 'string' variable
+fclose(ptr); // to free up the program memory
+
+------------
+READ FILE
+------------
+FILE *ptr = NULL; // It is a healthy practice to NULL a pointer to avoid future errors
+char string[50];
+ptr = fopen("generated.txt", "r");
+
+// to fetch a word
+fscanf(ptr, "%s", string); // ptr = the file from which we're fetching, %s = the datatype of which the data is, "string" = the variable in which the fetched data will be stored in
+printf("%s",string);
+
+// to fetch a word/sentence character by character
+for (int i = 0; i < 10; i++)
+    {
+        printf("%c\n", fgetc(ptr));
+    }
+fclose(ptr); // to free up the program memory
+
+------------
+PUTS() IN FILE I/O // Prints data in other files
+------------
+FILE *ptr;
+ptr = fopen("generated.txt", "w");
+putc('j', ptr); // you can only print one character in other file with this, or you can replace putc with puts and write a whole string
+fclose(ptr); // to free up the program memory
+
+------------
+------------
+FILE *fptr;
+    fptr = fopen("generated.txt", "r");
+    char c = fgetc(fptr); // This fetches and prints every character from the other file, or you can use fgets to fetch a whole string
+    while (c != EOF) // EOF = End of File
+    {
+        printf("%c", c);
+        c = fgetc(fptr);
+    }
+	fclose(ptr); // to free up the program memory
+
+------------
+------------
+ADVANCED FILE I/O METHODS
+
+r - 	Opens an existing text file for reading.
+
+w - 	Opens a file for writing.
+	Creates a file if it does not exist.
+	Writing starts from the beginning of the file.
+
+a - 	Opens a text file for writing in appending mode.
+	Creates a file if it does not exist.
+	The program will start appending content to the existing file content.
+
+r+ - 	This mode will open a text file for both reading and writing
+
+w+ - 	Opens a text file for both reading and writing. 
+	Creates a file if it does not exist.
+	It replaces every content when written.
+
+a+ - 	Opens a text file for both reading and writing. 
+	Creates a file if it does not exist.
+	It can only append to file.
