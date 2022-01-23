@@ -1,39 +1,24 @@
 // R O C K   P A P E R   S C I S S O R S
 
 /*    L O G I C
-      rock x scissors = rock
-      paper x scissors = scissor
-      paper x rock = paper
+      Rock x Scissors = Rock
+      Paper x Scissors = Scissors
+      Paper x Rock = Paper
       
-    user wons in
-      2 x 1 p r
-      3 x 2 s p
-      1 x 3 r s
-
-      cpu wons in:
-      2 x 3 p s
-      3 x 1 s r
-      1 x 2 r p
-    
-    user wons in
-      2 x 1 p r
-      3 x 2 s p
-      1 x 3 r s
-
-      cpu wons in:
-      2 x 3 p s
-      3 x 1 s r
-      1 x 2 r p
+        User wins when:        CPU Wins when:
+            2 x 1 = P x R             2 x 3 = P x S
+            3 x 2 = S x P             3 x 1 = S x R
+            1 x 3 = R x S             1 x 2 = R x P
 
       C O N C L U S I O N
-      Keep repeating the game 3 times, and log/store the results of each game, 
-      and display at the end the FINAL winner
+      Keep repeating the game 3 times, and log the results of each game, 
+      and display the FINAL winner at the end. 
 
       N O T E
       You've to take input the user's name and as their turn comes, it should be visible
 
       M Y   C A T C H 
-      Keep an escape key(i.e. 0) to exit the game in the middle of it, and after 3 times, ask the player if s/he wants to play it again
+      Keep an escape key(i.e. 0) to exit the game in the middle of it, and after 3 times, ask the player if they wants to play it again!
 */
 
 #include <stdio.h>
