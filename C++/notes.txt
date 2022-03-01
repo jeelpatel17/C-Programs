@@ -88,67 +88,61 @@ i.e.
     int a = 12;
     cout << "a's value is " << setw(10) << a; // a's value is         12
 
+/ *** POINTERS *** /
+int a = 12;
+    int *b = &a;
+    // Pointer which points to the address of a pointer
+    int **c = &b;
+    cout << a << endl; // prints the actual value
+    cout << b << endl; // prints the address of the actual value
+    cout << c << endl; // prints the address of the pointer variable, which is storing the address of the actual value
+
+/ *** Accessing array elements with just the first element's address *** /
+    int a[] = {0, 1, 2};
+    int *b = a;
+    cout << b << endl;
+    cout << ++b << endl;
+    cout << ++b << endl;
+
+/ *** Constructors in C++, known as 'struct' *** /
+struct car
+{
+    int id;
+    string modelName;
+    string brand;
+    float mileage;
+    void introduce()
+    {
+        cout << "Hello, this is " << this->brand << " " << this->modelName << ", and I have a stunning mileage of " << this->mileage << " kmpl.";
+    }
+};
+
+    struct car dreamCar1;
+    dreamCar1.modelName = "Carens";
+    dreamCar1.brand = "Kia";
+    dreamCar1.mileage = 67.55;
+
+    // Short hand to do just this
+    dreamCar1 = {1, "Carens", "Kia", 67.55};
 
 
+/ *** ALIAS IN Constructors *** /
+typedef struct car
+{
+    int id;
+    string modelName;
+    string brand;
+    float mileage;
+    void introduce()
+    {
+        cout << "Hello, this is " << this->brand << " " << this->modelName << ", and I have a stunning mileage of " << this->mileage << " kmpl.";
+    }
+} automobile;
 
-
-
-
-
-
-Intro:
-The answer is formed as a 'advantage/disadvantage' essay, it should be stating how the situation is a positive/negative development
-line 2 - you missed paraphrasing the 'in many parts of the world' part 
-line 2 - spelling mistake - ones, compared
-line 2 - compared to 'the' past
-line 3 - The immediate sentence after paraphrasing shouldn't contain a linker, as you haven't presented the first view yet
-line 4 - Instead of jumping immediately on the point, first answer the the question which is asked in the question statement. i.e. Here, the question is asking if the given situation is a positive or a negative development, so start the sentence with starter words such as 'absolutely/surely/definitely, it is a positive/negative development...'
-line 4 - some limitations 'should be imposed' which 'can' prevent them 'from' being rude...
-line 6 - spelling mistake - pros
-avoid using the pair 'pros-cons', as it's semi-formal, use advantage/disadvantage and benefits/drawbacks instead
-line 7 - further 'in the essay'
-
-Body 1:
-If using 'On the other hand'(in body3), you must use 'On the one hand' first, they both should be used simultaneously.
-line 2 - 'being self-dependent' or just 'being independent', self-independent is a wrong word combination
-line 2 - incorrect use of 'while', instead the sentence flow should be like this, 'Allowing them to make their own decisions as per their interests surely yields better and satisfactory outcomes in their personal as well as academic future'
-line 6 - them 'to perform' well
-line 6 - all the 'choices' that they have made
-line 7 - instead of 'this positive behaviour...', resulting them to succeed in whichever field they have chosen
-last sentence - according to me, it's quite wrong, as everyone has that independence of choosing their friends, so there would be an opinion conflict with that sentence
-
-Body 2:
-You've continued to explain the same point(and that too isn't linking to the point correctly), which can lead to negative marking, so you need to have atleast 2 points to explain in every essay
-line 1 - comma after 'previous time'
-line 2 - only available? only available to what?
-line 4 - 'into abroad'❌ 'to abroad'✔️
-line 5 - the point 'and many of them...' isn't making sense in this context; instead, you can write as 'Many parents are sending their children to abroad countries for their higher studies, which makes them truly independent as they would have to live make decisions by themselves 
-example sentence - avoid examples like this(based on stats) as even examiners know that they're being faked, so try to come up with your own relative's/friend's example, that would be more realistic
-last line - good name over these?
-
-Body 3:
-line 2 - react negatively, but who is the 'reactor'? mention 'parents'
-line 2 - in some children❌ in some families✔️
-line 3 - due to 'the' lack of time
-line 4 - Apostrophe 's' can be used with plural words as: parents'
-line 4 - schedules 'do' not allow them
-line 6 - 'forces'
-line 8 - spelling error - collegian; it would be just 'college students', in this context
-line 9 - 'victim of bad habits such as...'
-line 10 - The reason behind 'this' is that 'due to' hectic lifestyle
-line 11 - in the matter of saving time❌  in order to save time✔️
-line 13 - 'That is why', avoid using shorthands
-
-Conclusion:
-- I would suggest stating every point that you've explained in the essay in short in the conclusion and in the intro too.
-- You need to mention what your point-of-view was throughout the essay, but you've written the essay in a way in which it seems like you've made a fusion of both advantage/disadvantage essay and 'what-extent' essay, first need to make the content according to the question type
-line 1 - It is not necessary 'that'...
-line 3 - wrong use of inspite
-
-
-
-
-
+// Now, we can create structs like this:
+    automobile dreamCar1;
+// instead of writing the whole:
+    struct car dreamCar1;
 
 
 

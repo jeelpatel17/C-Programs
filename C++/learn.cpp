@@ -1,10 +1,16 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
+
+union software
+{
+    int id;
+    string name;
+    float pricePerMonth;
+};
+
 int main()
 {
-    int a = 12;
-    int *b = &a;
-    cout << &a << endl;
-    cout << b << endl;
+    union software s1;
+    s1.name = "adobeAe";
 }
