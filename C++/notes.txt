@@ -1,4 +1,4 @@
-    // DATATYPES IN C++
+/ *** DATATYPES IN C++ *** /
     string name = "harry";
     // int -> short (for short integers)
     int a = 2;
@@ -14,236 +14,143 @@
     long aVarWithLongMemoryAllocated;
     long long aVarWithVeryLongMemoryAllocated;
     long double score3 = 45.332;
+    // << is known as 'insertion operator'
     cout << "Enter your name:" << endl;
 
     // Capturing input and storing into a variable
+    // >> is called 'Extraction Operator'
     cin >> name;
 
     // Displaying a variable value; similarly for executing functions too instead of variables
     cout << "Hello " << name << " It's great to meet you!";
 
     // New line character in C++
-    // endl
+    // endl or \n
 
     // Typecasting
     cout << "a / b is " << (float)a / b << endl;
 
+/ *** Modules in C++ *** /
+Like the modules in JS, we have modules in C++ which have the extension of .h and which can be included as other headers
+i.e.
+    #include "printTable.h"
+    .
+    .
+    printTable(10);
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(inside printTable.h)
 
 #include <iostream>
-#include <string>
 using namespace std;
 
-int add(int a, int b)
+int printTable(int num)
 {
-    int c;
-    c = a + b;
-    return c;
+    for (int i = 1; i < 11; i++)
+    {
+        cout << num << " X " << i << " = " << num * i << endl;
+    }
 }
 
-class Employee
-{
-public:
-    string name;
-    int salary;
-
-    Employee(string n, int s, int sp)
-    {
-        this->name = n;
-        this->salary = s;
-        this->secretPassword = sp;
-    }
-
-    void printDetails()
-    {
-        cout << "The name of our first employee is " << this->name << " and his salary is " << this->salary << " Dollars" << endl;
-    }
-
-    void getSecretPassword()
-    {
-        cout<<"The secret password of employee is "<<this->secretPassword;
-    }
-
-private:
-    int secretPassword;
-};
-
-
-class Programmer : public Employee
-{
-    public:
-        int errors;
-};
-
+/ *** GET THE GLOBAL VARIABLE *** /
+int c = 1;
 int main()
 {
-    // cout<<"Hello World Harry"<<endl;
-    // cout<<"Next line";
-    // int a, b, c;
-    // short s23423a=9;
-    // cout<<s23423a;
-
-    // string harry = "harry"
-    // short a;
-    // int b= 89;
-    // long c;
-    // long long d;
-    // float const score = 45.32;
-    // double score2 = 45.322;
-    // long double score3 = 45.332;
-    // score = 34.2;
-    // b = 34;
-    // cout<<"The score is "<<score;]
-
-    // int a, b;
-    // cout<<"Enter first number"<<endl;
-    // cin>>a;
-
-    // cout<<"Enter second number"<<endl;
-    // cin>>b;
-
-    // cout<<"a + b is "<<a + b<<endl;
-    // cout<<"a - b is "<<a - b<<endl;
-    // cout<<"a * b is "<<a * b<<endl;
-    // cout << "a / b is " << (float) a / b << endl;
-
-    // int age;
-    // cout << "Enter your age" << endl;
-    // cin >> age;
-
-    // switch (age)
-    // {
-    // case 12:
-    //     cout << "You are 12 years old"<<endl;
-    //     break;
-    // case 18:
-    //     cout << "You are 18 years old"<<endl;
-    //     break;
-
-    // default:
-    //     cout << "You are neither 12 nor 18 years old";
-
-    // }
-
-    // if(age>150 || age<1)
-    // {
-    //     cout<<"Invalid age";
-    // }
-
-    // else if (age>=18){
-    //     cout<<"You can vote";
-    // }
-
-    // else
-    // {
-    //    cout<<"You cannot vote";
-    // }
-
-    // int index = 0;
-    // while(index<34)
-    // {
-    //     cout<<"We are at index number "<<index<<endl;
-    //     index = index + 1;
-    // }
-
-    // do
-    // {
-    //     cout << "We are at index number " << index << endl;
-    //     index = index + 1;
-    // } while (index < 33);
-
-    // for (int i = 1; i <= 34; i++)
-    // {
-    //     cout<<"The value of i is "<<i<<endl;
-    // }
-
-    // int a, b;
-    // cout<<"Enter first number"<<endl;
-    // cin>>a;
-
-    // cout<<"Enter second number"<<endl;
-    // cin>>b;
-    // cout<<"The function returned "<<add(a,b);
-
-    //     int arr[] = {1, 3, 6};
-    // // Array Index   0  1  2
-    //     // cout<<arr[1];
-    //     int marks[6];
-
-    //     for (int i = 0; i < 6; i++)
-    //     {
-    //         cout<<"Enter the marks of "<<i<<"th student"<<endl;
-    //         cin>>marks[i];
-    //     }
-
-    //     for (int i = 0; i < 6; i++)
-    //     {
-    //         cout<<"Marks of "<<i<<"th student is "<<marks[i]<<endl;
-    //     }
-
-    // int arr2d[2][3] = {  {1,2,3},
-    //                      {4,5,6}};
-
-    // for (int i = 0; i < 2; i++)
-    // {
-    //     for (int j = 0; j < 3; j++)
-    //     {
-    //         cout<<"The value at "<<i<<","<<j<<" is "<<arr2d[i][j]<<endl;
-    //     }
-
-    // }
-
-    // int a =343;
-    // float b = 87.94;
-    // cout<<(float) a/34<<endl;
-
-    // cout<<(int) b;
-
-    // string name = "harry";
-    // cout<<"The name is "<<name<<endl;
-    // cout<<"The length of name is "<<name.length()<<endl;
-    // cout<<"The name is "<<name.substr(1,155)<<endl;
-    // cout<<"The name is "<<name.substr(2,3);
-
-    // float a = 34.34;
-    // float* ptra;
-    // ptra = &a;
-    // cout<<"The value of a is "<<a<<endl;
-    // cout<<"The value of a is "<<*ptra<<endl;
-    // cout<<"The address of a is "<<&a<<endl;
-    // cout<<"The address of a is "<<ptra<<endl;
-
-    Employee har("Harry constructor", 344, 324432);
-    // har.name = "harry";
-    // har.salary = 100;
-    har.printDetails();
-    har.getSecretPassword();
-    // cout<<har.secretPassword;
-    // cout<<"The name of our first employee is "<< har.name << " and his salary is "<<har.salary<<" Dollars"<<endl;
-
-    return 0;
+    int c = 2;
+    cout << c;
+    // This means print the global 'c' variable's value
+    cout << ::c;
 }
+
+/ *** REFERENCE VARIABLES *** /
+    int c = 2;
+    // This means that b is referencing c's value
+    int &b = c;
+    cout << b << c; // 22
+    // If you change the b, it'll also change c
+    b = 3;
+    cout << b << c; // 33
+
+/ *** TYPECASTING *** /
+    int a = 3;
+    float b = 1.2001;
+    cout << (float)a; // this is equivalent to float(a)
+    cout << (int)b;
+
+/ *** CONSTANTS *** /
+    // You can write like both
+    const int a = 3;
+    int const a = 3;
+
+/ *** MANIPULATORS *** /
+1. endl - For moving the following code to a new line
+2. setw(4) - This will align any character right which is going to be printed after this function, and will set its width to 4 characters(in this context). NOTE: You need to include <iomanip> library to use this func
+i.e.
+    int a = 12;
+    cout << "a's value is " << setw(10) << a; // a's value is         12
+
+
+
+
+
+
+
+
+
+Intro:
+The answer is formed as a 'advantage/disadvantage' essay, it should be stating how the situation is a positive/negative development
+line 2 - you missed paraphrasing the 'in many parts of the world' part 
+line 2 - spelling mistake - ones, compared
+line 2 - compared to 'the' past
+line 3 - The immediate sentence after paraphrasing shouldn't contain a linker, as you haven't presented the first view yet
+line 4 - Instead of jumping immediately on the point, first answer the the question which is asked in the question statement. i.e. Here, the question is asking if the given situation is a positive or a negative development, so start the sentence with starter words such as 'absolutely/surely/definitely, it is a positive/negative development...'
+line 4 - some limitations 'should be imposed' which 'can' prevent them 'from' being rude...
+line 6 - spelling mistake - pros
+avoid using the pair 'pros-cons', as it's semi-formal, use advantage/disadvantage and benefits/drawbacks instead
+line 7 - further 'in the essay'
+
+Body 1:
+If using 'On the other hand'(in body3), you must use 'On the one hand' first, they both should be used simultaneously.
+line 2 - 'being self-dependent' or just 'being independent', self-independent is a wrong word combination
+line 2 - incorrect use of 'while', instead the sentence flow should be like this, 'Allowing them to make their own decisions as per their interests surely yields better and satisfactory outcomes in their personal as well as academic future'
+line 6 - them 'to perform' well
+line 6 - all the 'choices' that they have made
+line 7 - instead of 'this positive behaviour...', resulting them to succeed in whichever field they have chosen
+last sentence - according to me, it's quite wrong, as everyone has that independence of choosing their friends, so there would be an opinion conflict with that sentence
+
+Body 2:
+You've continued to explain the same point(and that too isn't linking to the point correctly), which can lead to negative marking, so you need to have atleast 2 points to explain in every essay
+line 1 - comma after 'previous time'
+line 2 - only available? only available to what?
+line 4 - 'into abroad'❌ 'to abroad'✔️
+line 5 - the point 'and many of them...' isn't making sense in this context; instead, you can write as 'Many parents are sending their children to abroad countries for their higher studies, which makes them truly independent as they would have to live make decisions by themselves 
+example sentence - avoid examples like this(based on stats) as even examiners know that they're being faked, so try to come up with your own relative's/friend's example, that would be more realistic
+last line - good name over these?
+
+Body 3:
+line 2 - react negatively, but who is the 'reactor'? mention 'parents'
+line 2 - in some children❌ in some families✔️
+line 3 - due to 'the' lack of time
+line 4 - Apostrophe 's' can be used with plural words as: parents'
+line 4 - schedules 'do' not allow them
+line 6 - 'forces'
+line 8 - spelling error - collegian; it would be just 'college students', in this context
+line 9 - 'victim of bad habits such as...'
+line 10 - The reason behind 'this' is that 'due to' hectic lifestyle
+line 11 - in the matter of saving time❌  in order to save time✔️
+line 13 - 'That is why', avoid using shorthands
+
+Conclusion:
+- I would suggest stating every point that you've explained in the essay in short in the conclusion and in the intro too.
+- You need to mention what your point-of-view was throughout the essay, but you've written the essay in a way in which it seems like you've made a fusion of both advantage/disadvantage essay and 'what-extent' essay, first need to make the content according to the question type
+line 1 - It is not necessary 'that'...
+line 3 - wrong use of inspite
+
+
+
+
+
+
+
+
+
 
