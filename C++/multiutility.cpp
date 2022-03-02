@@ -7,6 +7,7 @@ class MultiUtility
 {
     // even if you don't mention 'private' here, it'll be private by-default
 private:
+    // any of these below variables and functions aren't accessible by user
     int initialChoice;
     void selectTool(int id)
     {

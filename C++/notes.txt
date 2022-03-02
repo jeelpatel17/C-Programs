@@ -289,3 +289,16 @@ main()
     cout << chevy.ownerName;
     return 1;
 }
+
+/ *** OOPs - Classes and objects *** /
+
+class --> extension of structures (in C)
+structures had limitations
+     - members are public
+     - No methods
+classes --> structures + more
+classes --> can have methods and properties
+classes --> can make few members as private & few as public
+structures in C++ are typedefed
+
+/ *** VERY MINI-PROJECT MULTIUTILITY using OOP *** /
