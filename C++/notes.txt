@@ -436,6 +436,12 @@ Types of INHERITANCE:
  {
      class members/methods, etc...
  }
+---------------------------- 
+                            Public Mode      	    Private Mode    	  Protected Mode
+Private members            Not Inherited            Not Inherited         Not Inherited              
+Protected members           Protected                 Private              	Protected                    
+Public members               Public                   Private               Protected       
+
  Visibility mode in inheritance: [note: it is private by-default]
  IF YOU KEEP IT PUBLIC: the members of your base_class will be public in the derived class too;
  IF YOU KEEP IT PRIVATE: your base_class's public members will be private in your derived class and the already private members of your base_class will NOT be inherited.
@@ -460,3 +466,21 @@ int main()
     cout << Jeel.someVar;
     return 1;
 }
+
+/ *** PROTECTED IN INHERITANCE *** /
+class Base
+{
+    // Protected space is where you can declare members and methods which are inherited but works as private
+protected:
+    int privateButInherits = 7;
+};
+
+// Now you can inherit your base_class using 'protected' visibility mode and not making it accessible to others!
+class Derived : protected Base
+{
+};
+
+int main()
+{
+    Derived Jeel;
+    cout << Jeel.privateButInherits; // will throw error!
