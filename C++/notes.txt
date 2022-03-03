@@ -363,6 +363,7 @@ public:
     float mileage;
     // The constructor; which is invoked automatically whenever an object is created from this class
     // This forward declaration still needs to be here if you want to use the 2nd method to define constructor
+    // If you want to keep this format, you must also specify a default constructor so that whenever you inherit some other class from this class, it'll call the default constructor. i.e. Car(){}; // this is a default constructor with no args and statements
     Car(string name, string brand, float mileage);
     void intro()
     {
@@ -387,5 +388,75 @@ int main()
 {
     Car car1("Fantazma", "Lamborghini", 97.9);
     car1.intro();
+    return 1;
+}
+
+/ *** DESTRUCTORS *** /
+class num
+{
+public:
+    void someFuncs()
+    {
+        cout << "count called!";
+    }
+    num()
+    {
+        cout << "constructor called!" << endl;
+    }
+    //  This is called 'Destructor', which basically is used to destruct the memory allocated to the class
+    ~num()
+    {
+        cout << "destructor called!" << endl;
+    }
+};
+
+int main()
+{
+    // Whenever an object is created from the class 'num', the constructor will be called and it'll print "constructor called!", but as the program will exit the below {} block, it'll destruct the object and the destructor will be called!
+    {
+        num n1;
+    }
+
+    return 1;
+}
+
+
+/ *** INHERITANCE *** /
+/*
+Types of INHERITANCE:
+1. Single Inheritance
+2. Multilevel Inheritance
+3. Multiline Inheritance
+4. Hierarchical Inheritance
+5. Hybrid Inheritance
+*/
+/*
+ syntax
+ class {{derived_class}} : {{visibility_mode}} {{base_class}}
+ {
+     class members/methods, etc...
+ }
+ Visibility mode in inheritance: [note: it is private by-default]
+ IF YOU KEEP IT PUBLIC: the members of your base_class will be public in the derived class too;
+ IF YOU KEEP IT PRIVATE: your base_class's public members will be private in your derived class and the already private members of your base_class will NOT be inherited.
+*/
+
+class Employee
+{
+    // if I rename this to private, it'll NOT inherit to any class regarless of the visibility mode in the derived class
+public:
+    int someVar = 7;
+};
+
+class Programmer : public Employee
+{
+    // now the 'someVar' variable is inherited inside this!
+};
+
+int main()
+{
+    // write an example of inheritance demonstrating both inheritance as well as both visibility modes
+    Programmer Jeel;
+    cout << Jeel.someVar;
     return 1;
 }
