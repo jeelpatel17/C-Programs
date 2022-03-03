@@ -105,7 +105,7 @@ int a = 12;
     cout << ++b << endl;
     cout << ++b << endl;
 
-/ *** Constructors in C++, known as 'struct' *** /
+/ *** Struct *** /
 struct car
 {
     int id;
@@ -127,7 +127,7 @@ struct car
     dreamCar1 = {1, "Carens", "Kia", 67.55};
 
 
-/ *** ALIAS IN Constructors *** /
+/ *** ALIAS IN struct *** /
 typedef struct car
 {
     int id;
@@ -276,6 +276,7 @@ public:
 };
 
 // This is how we can define an inner function of a class outside the class
+:: is known as 'Scope Resolution Operator'
 void Car ::setOwner(string name)
 {
     this->ownerName = name;
@@ -283,6 +284,7 @@ void Car ::setOwner(string name)
 
 main()
 {
+    // To count how many car objects are made with this class, you can use 'static' variables which are associated with the class and not the object, and it'll not be allocated for every object which is created and will be shared by all the created objects; i.e. static int count; // by default it starts with 0
     Car chevy;
     // This both below lines will not work as the variable 'ownerName' is not even read only, no one can either read or write it except its own parent class!
     chevy.ownerName = "Paresh";
@@ -302,3 +304,88 @@ classes --> can make few members as private & few as public
 structures in C++ are typedefed
 
 / *** VERY MINI-PROJECT MULTIUTILITY using OOP *** /
+
+/ *** STATIC FUNCTIONS *** /
+Which basically accesses static variables, it cannot print variables except static variables
+
+// This is how you can utilise it
+*inside class*
+static void getCount(){
+    cout << count;
+}
+*inside main*
+[ClassName]::getCount();
+
+
+/ *** FRIEND FUNCTIONS *** /
+They're nothing but the permission given by the main class to some function in order to execute some task outside the class to access the private variables and functions
+
+SIMPLEST EXAMPLE OF FRIEND FUNCTIONS:
+// This is known as Forward declaration; it is the assurity given by us to the compiler that even if there isn't a class Y, it will come up later in the code!
+class Y;
+
+class X
+{
+    int num = 7;
+    // This is the permission statement, which basically means that if add() function is trying to access my private data, allow it to do that
+    friend void add(X, Y);
+    // If we want to friend a whole class, then just write the class name like below:
+    class someClass;
+};
+
+class Y
+{
+    int num = 7;
+    friend void add(X, Y);
+};
+
+void add(X one, Y two)
+{
+    cout << one.num + two.num;
+}
+
+int main()
+{
+    X a;
+    Y b;
+    add(a, b);
+    return 1;
+}
+
+/ *** CONSTRUCTORS *** /
+-> It can have default arguments like functions,
+-> It can also work like function overloading, if there are more than one constructor in the class, the compiler will match its arguments and proceed accordingly
+
+class Car
+{
+public:
+    string name, brand;
+    float mileage;
+    // The constructor; which is invoked automatically whenever an object is created from this class
+    // This forward declaration still needs to be here if you want to use the 2nd method to define constructor
+    Car(string name, string brand, float mileage);
+    void intro()
+    {
+        cout << "This is stunning " << this->brand << " " << this->name << " with a fantastic mileage of " << this->mileage << " kmpl." << endl;
+    };
+    // {
+    //     this->name = name;
+    //     this->brand = brand;
+    //     this->mileage = mileage;
+    // }
+};
+
+// Another way to define constructors; if you've any parameters in the constructor, then it is called parameterized constructor.
+Car::Car(string name, string brand, float mileage)
+{
+    this->name = name;
+    this->brand = brand;
+    this->mileage = mileage;
+}
+
+int main()
+{
+    Car car1("Fantazma", "Lamborghini", 97.9);
+    car1.intro();
+    return 1;
+}

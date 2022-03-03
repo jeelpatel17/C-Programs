@@ -1,87 +1,39 @@
 #include <iostream>
 #include <string>
-
+#include <cmath>
 using namespace std;
 
-class MultiUtility
-{
-    // even if you don't mention 'private' here, it'll be private by-default
-private:
-    int initialChoice;
-    void selectTool(int id)
-    {
-        switch (id)
-        {
-        case 1:
-            findLength();
-            break;
-        case 2:
-            toUpperCase();
-            break;
-        case 3:
-            toLowerCase();
-            break;
-        default:
-            break;
-        }
-    }
-    void findLength()
-    {
-        string word;
-        cout << "Enter a word to know its length:" << endl;
-        cin >> word;
-        cout << "The length of " << word << " is " << word.length() << ".";
-    }
-    string convertToUpper(string word)
-    {
-        char tWord[word.length()];
-        for (int i = 0; i < word.length(); i++)
-        {
-            tWord[i] = word[i] - 32;
-        }
-        return tWord;
-    }
-    void toUpperCase()
-    {
-        string word;
-        cout << "Enter a word/sentence to convert to Uppercase:" << endl;
-        cin >> word;
-        cout << convertToUpper(word);
-    }
-    string convertToLower(string word)
-    {
-        char tWord[word.length()];
-        for (int i = 0; i < word.length(); i++)
-        {
+// Function which takes 2 point objects and computes the distance between those two points; define it outside the class and make it a friend function
+// Formula for calculating distance
+// √ (x2-x1)2 + (y2 - y1)2 <====> sqrt(exp2(x2-x1) + exp2(y2-y1));
 
-            tWord[i] = word[i] + 32;
-        }
-        return tWord;
-    }
-    void toLowerCase()
-    {
-        string word;
-        cout << "Enter a word/sentence to convert to Lowercase:" << endl;
-        cin >> word;
-        cout << convertToLower(word);
-    }
+class Point
+{
+    int x, y;
 
 public:
-    void start()
+    Point(int a, int b)
     {
-        cout << "WELCOME TO CMD MULTIUTILITY TOOL!" << endl;
-        cout << "Enter a digit from below to continue:" << endl;
-        cout << "1. Find length of word\t"
-             << "2. Convert to upper case\t"
-             << "3. Convert to lower case\t" << endl;
-        cin >> initialChoice;
-        selectTool(initialChoice);
+        x = a;
+        y = b;
+    }
+    friend float calcDistance(Point, Point);
+    void displayPoint()
+    {
+        cout << "The point is (" << x << ", " << y << ")" << endl;
     }
 };
 
-main()
+float calcDistance(Point hey1, Point hey2)
 {
-    MultiUtility instance;
-    instance.start();
+    return sqrt(exp2(hey1.y - hey1.x) + exp2(hey2.y - hey2.x));
+}
+
+int main()
+{
+    Point instance1(0);
+    Point instance2(1);
+    cout << calcDistance(instance1, instance2);
+    // instance.displayPoint();
     return 1;
 }
