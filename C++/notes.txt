@@ -484,3 +484,13 @@ int main()
 {
     Derived Jeel;
     cout << Jeel.privateButInherits; // will throw error!
+
+/ *** Multilevel Inheritance *** /
+class Base{};
+class Derived1 : public Base{};
+class Derived2 : public Derived1{};
+
+/ *** Multiple Inheritance *** /
+class Base1{};
+class Base2{};
+class Derived : private Base1, protected Base2{};
