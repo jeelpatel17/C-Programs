@@ -494,3 +494,115 @@ class Derived2 : public Derived1{};
 class Base1{};
 class Base2{};
 class Derived : private Base1, protected Base2{};
+
+/ *** AMBIGUITY IN INHERITANCE *** /
+
+// This is an ambiguous situation in which there are two clashing same name members/methods while performing multiple inheritance; This can be prevented by specifying which member/method to use, in the derived class, like as illustrated below!
+class Base1
+{
+public:
+    void greet()
+    {
+        cout << "Namaste!";
+    }
+};
+class Base2
+{
+public:
+    void greet()
+    {
+        cout << "Bonjour!";
+    }
+};
+
+class Derived : public Base1, public Base2
+{
+public:
+    // IF this would not have defined, than it'd use the greet() from its base class
+    void greet()
+    {
+
+        Base1 ::greet();
+    }
+};
+
+int main()
+{
+    Derived jeel;
+    jeel.greet();
+    return 1;
+}
+
+*** Virtual Base Class <-> Prevents ambiguity, in multilevel inheritance ***
+class VirtualBase{
+    public:
+        void greet() { cout << "Hey Jeel!"; }
+};
+class Derived1_1 : virtual public VirtualBase{};
+class Derived1_2 : virtual public VirtualBase{};
+class Derived2 : public Derived1_1, public Derived1_2{};
+
+int main()
+{
+    // This will not throw an error as we've made the base class, a virtual base class, hence it'd prevent the ambiguity by itself under the hood!
+    Derived2 jeel;
+    jeel.greet();
+    return 1;
+}
+
+/ *** EXAMPLE ---- Multiple Inheritance *** /
+class SimpleCalc
+{
+    int a, b;
+
+public:
+    void takeInSimple()
+    {
+        cout << "Enter value of a:" << endl;
+        cin >> a;
+        cout << "Enter value of b:" << endl;
+        cin >> b;
+        putOutSimple();
+    }
+    void putOutSimple()
+    {
+        cout << a << " + " << b << " = " << a + b << endl;
+        cout << a << " - " << b << " = " << a - b << endl;
+        cout << a << " * " << b << " = " << a * b << endl;
+        cout << a << " / " << b << " = " << a / b << endl;
+    }
+};
+
+class SciCalc
+{
+    int a, b;
+
+public:
+    void takeInSci()
+    {
+        cout << "Enter value of a:" << endl;
+        cin >> a;
+        cout << "Enter value of b:" << endl;
+        cin >> b;
+        putOutSci();
+    }
+    void putOutSci()
+    {
+        cout << "sin of a is " << sin(a) << endl;
+        cout << "cos of a is " << cos(a) << endl;
+        cout << "exp of a is " << exp(a) << endl;
+        cout << "tan of a is " << tan(a) << endl;
+    }
+};
+ 
+class HybridCalc : public SimpleCalc, public SciCalc
+{
+};
+
+int main()
+{
+    HybridCalc inst;
+    inst.takeInSimple();
+    inst.takeInSci();
+    return 1;
+}
