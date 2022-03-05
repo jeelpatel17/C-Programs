@@ -606,3 +606,42 @@ int main()
     inst.takeInSci();
     return 1;
 }
+
+/ *** ORDER OF CONSTRUCTOR EXECUTION in INHERITANCE *** /
+
+/*
+Case1:
+class B: public A{
+   // Order of execution of constructor -> first A() then B()
+};
+
+Case2:
+class A: public B, public C{
+    // Order of execution of constructor -> B() then C() and A()
+};
+
+Case3:
+class A: public B, virtual public C{
+    // Order of execution of constructor -> C() then B() and A()
+};
+
+*/
+
+/* *** Initialization list in constructors *** */
+class some
+{
+    int a, b;
+
+public:
+    // This is a syntax through which a and b can be given values via constructor 
+    some(int c, int d) : a(c), b(d)
+    {
+        cout << a << " " << b << endl;
+    }
+};
+
+int main()
+{
+    some thing(1, 2);
+    return 1;
+}
