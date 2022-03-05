@@ -762,3 +762,77 @@ cout << someth;
 
 // This closes the file and frees up the memory allocated to it
     file.close();
+
+    
+/* *** C++ TEMPLATES *** */
+
+// You can have multiple parameters too, like below:
+template <class dataType1, class dataType2>
+template <class dataType>
+class Calc
+{
+public:
+    dataType a, b;
+    // for multiple param
+    dataType1 a;
+    dataType2 b;
+    void setData()
+    {
+        cout << "Enter first value: ";
+        cin >> a;
+        cout << "Enter second value: ";
+        cin >> b;
+        getData();
+    }
+    void getData()
+    {
+        cout << a << " + " << b << " = " << a + b << endl;
+        cout << a << " - " << b << " = " << a - b << endl;
+        cout << a << " * " << b << " = " << a * b << endl;
+        cout << a << " / " << b << " = " << a / b << endl;
+    }
+};
+
+int main()
+{
+    // You can enter here anyy datatype according to your function's needs
+    Calc<int> instance;
+    instance.setData();
+    return 0;
+}
+
+CWH EXAMPLE OF Templte with Multiple Parameters
+// Also, this is how to set default parameters
+    template<class T1, class T2=float>
+    class myClass{
+        public:
+            T1 data1;
+            T2 data2;
+            myClass(T1 a,T2 b){
+                data1 = a;
+                data2 = b;
+            }
+        void display(){
+            cout<<this->data1<<" "<<this->data2;
+        }
+    };
+
+    int main()
+    {
+        myClass<int, char> obj(1, 'c');
+        obj.display();
+    }
+
+/* *** FUNCTION TEMPLATES *** */
+
+template <class T1, class T2>
+void funcAverage(T1 a, T2 b)
+{
+    cout << (a + b) / 2.0;
+}
+
+int main()
+{
+    funcAverage(5.2, 2.5);
+    return 1;
+}
