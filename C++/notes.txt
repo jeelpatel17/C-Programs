@@ -645,3 +645,23 @@ int main()
     some thing(1, 2);
     return 1;
 }
+
+/* *** new and delete KEYWORDS IN C++ *** */
+
+int main()
+{
+    // Dynamically allocating memory to variables and arrays with 'new' keyword; the below 'p' will store the address of the memory, as it uses value by reference
+    int *p = new int(5);
+    int *arr = new int[5];
+    arr[0] = 1;
+    arr[1] = 2;
+    arr[2] = 3;
+    cout << p << endl;
+    // To get the addresses of the array elements, you need to mention & before the element specifier
+    cout << arr[0] << endl;
+    cout << arr[1] << endl;
+    cout << arr[2] << endl;
+    // Deleting the dynamically allocated memory with 'delete' keyword
+    delete[] arr;
+    return 1;
+}
