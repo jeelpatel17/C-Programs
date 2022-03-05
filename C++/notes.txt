@@ -836,3 +836,15 @@ int main()
     funcAverage(5.2, 2.5);
     return 1;
 }
+
+/ *** TEMPLATE FUNCTION OVERLOADING *** /
+
+// Suppose there are two functions with the same name, what happens if we call it?
+void func(int a){
+    cout<<"I am first func() "<<a<<endl;
+}
+template<class T>
+void func(T a){
+    cout<<"I am templatised func() "<<a<<endl;
+}
+func(4);  // The first function will run!; Exact match takes the highest priority.
