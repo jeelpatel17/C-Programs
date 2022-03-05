@@ -703,13 +703,17 @@ int main()
      2.1 Virtual Functions
 
 
-/* *** TWO WAYS to capture a string with spaces *** */
+/* *** THREE WAYS to capture a string with spaces *** */
 
 // First Way
-    char name[20];
-    cin.getline(name, 20);
-    cout << name;
+    string str;
+    getline(cin, str);
+    cout << str;
 // Second Way  
     char namec[10];
     gets(namec);
     cout << namec;
+// Third Way
+    char name[20];
+    cin.getline(name, 20);
+    cout << name;
