@@ -717,3 +717,48 @@ int main()
     char name[20];
     cin.getline(name, 20);
     cout << name;
+
+/* *** FILES I/O *** */
+/* Useful classes to work with file in 'fstream' library
+1. fstreambase
+2. ifstream --> derived from fstreambase
+3. ofstream --> derived from fstreambase
+
+To work with files in C++, you'll first open it;
+There are primarily 2 ways to open a file:
+    1. Using the constructor
+    2. Using the function open()
+*/
+
+// 1. Opening with a constructor & writing in that file    
+ofstream out("hello.txt");
+out << "Something else!";
+
+// 1. Opening with a constructor & reading that file [you need to store the content somewhere first to see it]
+string someth;
+ifstream {{anything}}("hello.txt");
+    // to get content w/o whitespaces
+        {{anything}} >> someth;
+    // to get content along w/ whitespaces
+        getline({{anything}}, someth);
+cout << someth;
+
+// 2. Opening with the open() function of fstreambase
+    ofstream out;
+    out.open("hello.txt");
+    out << "Helloooooooo!";
+
+// EOF() ---- END OF FILE
+    string content;
+    ifstream read;
+    read.open("notes.txt");
+    // With the traditional cin or getline, you'd be able to get a word or a sentence, but if you want to read the whole file's content, you need to use eof(), which means end of file; The below condition in the while loop simply means that if the file's end is not there, continue printing the sentences one by one
+    while (read.eof() == 0)
+    {
+        getline(read, content);
+        cout << content << endl;
+    }
+    read.close();
+
+// This closes the file and frees up the memory allocated to it
+    file.close();
