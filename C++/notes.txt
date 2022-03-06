@@ -874,11 +874,138 @@ There are 3 main components in STL:
                     Insertion/Deletion at the end - Fast
             2. Associative Container -
                 All operations fast except Random Access 
-            2. Derived Container -
+            3. Derived Container -
                 Depends upon data structure
-            
-
     2. Algorithms - 
         Procedure to process data
     3. Iterators - 
         Object which points to an element of a container
+
+/* *** 1.1 VECTOR ---- The MALLOC of C++ *** */
+
+// This can store any data; basically like an array
+    vector<int> vec;
+    int size, elem;
+    cout << "Enter the size of array you want: ";
+    cin >> size;
+    for (int i = 0; i < size; i++)
+    {
+        // Ask user for the value first
+            cout << "Enter value of " << i + 1 << " : ";
+        // Store the inputted value temporarily into some variable
+            cin >> elem;
+        // Push it to the array's end
+            vec.push_back(elem);
+        // Pops out the last element from the array
+            vec.pop_back();
+    }
+
+// Function to display elements of a vector.
+// It takes in a reference of the vector
+void display(vector<int> &v)
+{
+    // Runs until the passed vector's total elements are over
+    for (int i = 0; i < v.size(); i++)
+    {
+        // Prints the values inside the vector's indices
+            cout << v[i] << endl;
+        // It works just like charAt() in JS; returns the value which is at a given index
+            cout << v.at(i) << " ";
+    }
+}
+*inside main()*
+display(vec);
+
+// To insert an element in the vector; You need to give the insert function an iterator too!
+    An iterator can be made like below:
+        vector<int>::iterator iter = vec.begin();
+    The 'iter' here works like an index to which we want to insert the elemt into, to insert at the second position, you can do +1
+        vec.insert(iter + 1, 77);
+    Now if you want to insert more than one copies of the element at that position, you can pass one more param like below:
+        vec.insert(iter + 2, 3, 7);
+
+
+// WHAT IF WE WANT TO SPECIFY THE SIZE OF THE VECTOR?
+
+vector <int> vec(4); // a vector of size 4
+vector <int> vec2(vec); // a vector made from vec which will have the same size as vec
+
+// a vector which is defined at the time of initialization
+vector <int> vec3(6,3); // this means insert 6 times 3. i.e. 3 3 3 3 3 3
+
+
+/* *** LISTS *** */
+    /* Lists gives us the functionality which arrays doesn't.
+       i.e. If you defined an array with thousands of elements, and suppose you want to delete an element from the middle of that array, that would result in a blank space and we would need to manually shift all elements to the one-step front! That pain-point is solved by lists.
+       --> Array is a contiguous allocated memory; list is not contiguous, it only stores reference of the element which is stored anywhere in the heap.
+       --> If you want to access elements faster --> use Arrays;
+           If you want to insert/delete elements faster --> use Lists. */
+    list<int> alist(4); // an empty list of size 4
+
+    alist.push_front(11);
+
+    list<int>::iterator iter;
+    // The below statement means that the iter named iterator will now store the reference of the list's first element
+    iter = alist.begin();
+    cout << *iter;
+
+//// LIST FUNCTIONS
+
+void display(list<int> &lst)
+{
+    list<int>::iterator it;
+    // it stores the reference of the first element and prints the value inside it until the end() of list isn't there
+    for (it = lst.begin(); it != lst.end(); it++)
+    {
+        cout << *it << " ";
+    }
+}
+
+list<int> alist1(2, 3); // an empty list of size 4
+    list<int> alist2(2, 2);
+// This will remove all occurences of given element
+    alist1.remove({{an-element}});
+// merge two lists
+    alist1.merge(alist2);
+// sort list
+    alist1.sort();
+// reverse list
+    alist1.reverse();
+// clear a list
+    alist1.clear();
+    display(alist1);
+
+
+/* *** MAPS IN C++ *** */
+
+// Two ways to display marks from map: via separate function, and inline
+void displayMarks(map<string, int> &myMap)
+{
+    map<string, int>::iterator iter;
+    for (iter = myMap.begin(); iter != myMap.end(); iter++)
+    {
+        cout << (*iter).first << " " << (*iter).second << endl;
+    }
+}
+
+int main()
+{
+    map<string, int> marks;
+    marks["Jeel"] = 58;
+    marks["Denzel"] = 57;
+    marks["Troy"] = 65;
+    marks.insert({"Harry", 777});
+    displayMarks(marks);
+    // Via inline method
+    // map<string, int>::iterator iter;
+    // for (iter = marks.begin(); iter != marks.end(); iter++)
+    // {
+    //     cout << (*iter).first << " " << (*iter).second << endl;
+    // }
+    return 1;
+}
+
+/* *** Function Objects *** */
+    /* Function wrapped in a class so that it is available like an object;
+        In short, it is an object which will work like a function.
+    */
