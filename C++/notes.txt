@@ -848,3 +848,37 @@ void func(T a){
     cout<<"I am templatised func() "<<a<<endl;
 }
 func(4);  // The first function will run!; Exact match takes the highest priority.
+
+
+/* *** STL - STANDARD TEMPLATE LIBRARY *** */
+
+// It is a library of generic classes and functions
+There are 3 main components in STL:
+    1. Containers - 
+        Object which stores data
+            1. Sequence Container - Stores data in a linear fashion
+                i.e. Vector, List, Dequeue
+            2. Associative Container - Direct access(fast searching/access/deletion) - Tree structure
+                i.e. Set/Multiset, Map/Multimap
+            3. Derived Container - Real-world modelling
+                i.e. Stack, Queue, Priority-Queue
+        When to use which?
+            1. Sequence Container - 
+                1.1 Vector
+                    Random Access - Fast
+                    Insertion/Deletion - Slow
+                    Insertion/Deletion at the end - Fast
+                1.2 List
+                    Random Access - Slow
+                    Insertion/Deletion in the middle - Fast
+                    Insertion/Deletion at the end - Fast
+            2. Associative Container -
+                All operations fast except Random Access 
+            2. Derived Container -
+                Depends upon data structure
+            
+
+    2. Algorithms - 
+        Procedure to process data
+    3. Iterators - 
+        Object which points to an element of a container
